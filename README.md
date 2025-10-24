@@ -2,7 +2,7 @@
 
 A machine learning project that predicts crime severity (Part 1 vs Part 2) using Los Angeles Police Department crime data from 2020 to present.
 
-## 📊 Project Overview
+## Project Overview
 
 This project analyzes LAPD crime data to build a predictive model that classifies crimes into two categories:
 - **Part 1**: Serious crimes (more severe)
@@ -10,7 +10,7 @@ This project analyzes LAPD crime data to build a predictive model that classifie
 
 The model uses a Perceptron classifier with hyperparameter optimization and probability calibration to achieve robust predictions.
 
-## 🎯 Key Features
+## Key Features
 
 - **Data Analysis**: Comprehensive EDA of 990,293 crime records
 - **Feature Engineering**: Temporal, spatial, and demographic feature extraction
@@ -20,7 +20,7 @@ The model uses a Perceptron classifier with hyperparameter optimization and prob
 - **Feature Importance**: Permutation importance analysis
 - **Visualization**: Comprehensive plots for data understanding and model evaluation
 
-## 📈 Model Performance
+## Model Performance
 
 The trained Perceptron model achieves:
 - **Accuracy**: 75.32%
@@ -32,7 +32,7 @@ The trained Perceptron model achieves:
 - Dummy (Random): 51.87%
 - **Perceptron**: 75.32%
 
-## 🗂️ Dataset Information
+## Dataset Information
 
 **Source**: LAPD Crime Data from 2020 to Present
 - **Records**: 990,293 crime incidents
@@ -46,7 +46,7 @@ The trained Perceptron model achieves:
 - **Spatial**: Latitude, Longitude, Area Name
 - **Contextual**: Premise Description, Weapon Description
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 - **Python**: Core programming language
 - **Pandas**: Data manipulation and analysis
@@ -55,7 +55,7 @@ The trained Perceptron model achieves:
 - **Matplotlib/Seaborn**: Data visualization
 - **Contextily**: Geographic visualization with basemaps
 
-## 📋 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -92,7 +92,7 @@ The trained Perceptron model achieves:
   pip install -r requirements.txt
   ```
 
-## 🚀 Usage
+## Usage
 
 ### Running the Analysis
 1. **Data Exploration**: Execute cells 1-25 for comprehensive EDA
@@ -105,7 +105,7 @@ The trained Perceptron model achieves:
 - `clip_rare()`: Handles rare categorical values
 - Model persistence with joblib for deployment
 
-## 📊 Data Preprocessing
+## Data Preprocessing
 
 ### Cleaning Steps
 1. **Missing Value Handling**: Strategic imputation for different data types
@@ -122,7 +122,7 @@ The trained Perceptron model achieves:
 - **Categorical Encoding**: One-hot encoding with minimum frequency filtering
 - **Missing Value Strategy**: Median for numeric, most frequent for categorical
 
-## 🎯 Model Architecture
+## Model Architecture
 
 ### Pipeline Components
 1. **Preprocessing**: ColumnTransformer with separate pipelines for numeric and categorical data
@@ -135,7 +135,7 @@ The trained Perceptron model achieves:
 - **Cross-validation**: 5-fold stratified
 - **Scoring**: F1-macro score
 
-## 📈 Results & Insights
+## Results & Insights
 
 ### Top Crime Types
 1. Vehicle - Stolen (112,502 incidents)
@@ -152,7 +152,7 @@ The trained Perceptron model achieves:
 - **Crime Hotspots**: Street locations and residential areas
 
 
-## 🔍 Model Evaluation
+## Model Evaluation
 
 ### Confusion Matrix
 - **True Positives**: 102,579 (Part 1 correctly identified)
@@ -166,7 +166,7 @@ The trained Perceptron model achieves:
 - **Part 2 Precision**: 74.83%
 - **Part 2 Recall**: 58.39%
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 1. **Model Improvements**: 
    - Try ensemble methods (Random Forest, XGBoost)
@@ -183,14 +183,14 @@ The trained Perceptron model achieves:
    - API development
    - Model monitoring and retraining pipeline
 
-## 📝 Notes
+## Notes
 
 - The model uses sigmoid calibration to provide probability estimates
 - Geographic coordinates are filtered to Los Angeles area bounds
 - Rare categorical values are grouped to improve model stability
 - All random operations use seed=42 for reproducibility
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to contribute to this project by:
 - Improving the model performance
@@ -198,12 +198,12 @@ Feel free to contribute to this project by:
 - Enhancing visualizations
 - Optimizing the preprocessing pipeline
 
-## 📄 License
+## License
 
 This project is for educational and research purposes. Please ensure compliance with data usage policies when working with LAPD crime data.
 
 ---
 
-**Author**: [Your Name]  
-**Date**: 2024  
+**Author**: [Prangon Sarwar]  
+**Date**: 24-10-2025  
 **Dataset**: LAPD Crime Data from 2020 to Present
