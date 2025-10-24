@@ -1,0 +1,33 @@
+# Core Data Science Libraries
+pandas>=1.5.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Machine Learning
+scikit-learn>=1.1.0
+scipy>=1.9.0
+
+# Model Persistence
+joblib>=1.2.0
+
+# Geographic Visualization (Optional - may require additional system dependencies)
+# Note: contextily installation may require GDAL system libraries
+# For Windows users, consider using conda instead: conda install contextily
+contextily>=1.6.0
+
+# Jupyter Notebook Support (if running locally)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Additional dependencies for contextily (if needed)
+# These are automatically installed with contextily but listed for reference:
+# geopy>=2.4.0
+# mercantile>=1.2.0
+# pillow>=8.0.0
+# rasterio>=1.4.0
+
+# Development and Testing (optional)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0
