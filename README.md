@@ -1,209 +1,208 @@
-# LAPD Crime Prediction with Perceptron
+# LA Crime Classification — From Perceptron to Neural Network (MLP)
 
-A machine learning project that predicts crime severity (Part 1 vs Part 2) using Los Angeles Police Department crime data from 2020 to present.
-
-## Project Overview
-
-This project analyzes LAPD crime data to build a predictive model that classifies crimes into two categories:
-- **Part 1**: Serious crimes (more severe)
-- **Part 2**: Minor crimes (less severe)
-
-The model uses a Perceptron classifier with hyperparameter optimization and probability calibration to achieve robust predictions.
-
-## Key Features
-
-- **Data Analysis**: Comprehensive EDA of 990,293 crime records
-- **Feature Engineering**: Temporal, spatial, and demographic feature extraction
-- **Model Training**: Perceptron with RandomizedSearchCV for hyperparameter tuning
-- **Model Calibration**: Sigmoid calibration for probability estimates
-- **Performance Evaluation**: Multiple metrics including accuracy, F1-score, and ROC-AUC
-- **Feature Importance**: Permutation importance analysis
-- **Visualization**: Comprehensive plots for data understanding and model evaluation
-
-## Model Performance
-
-The trained Perceptron model achieves:
-- **Accuracy**: 75.32%
-- **F1-Macro Score**: 73.18%
-- **ROC-AUC**: 83.49%
-
-### Baseline Comparison
-- Dummy (Most Frequent): 59.70%
-- Dummy (Random): 51.87%
-- **Perceptron**: 75.32%
-
-## Dataset Information
-
-**Source**: LAPD Crime Data from 2020 to Present
-- **Records**: 990,293 crime incidents
-- **Features**: 28 original columns
-- **Time Period**: 2020-2024
-- **Geographic Coverage**: Los Angeles area
-
-### Key Features Used
-- **Temporal**: Year, Month, Weekday, Hour, Minute, IsWeekend
-- **Demographic**: Victim Age, Victim Sex
-- **Spatial**: Latitude, Longitude, Area Name
-- **Contextual**: Premise Description, Weapon Description
-
-## Technical Stack
-
-- **Python**: Core programming language
-- **Pandas**: Data manipulation and analysis
-- **NumPy**: Numerical computing
-- **Scikit-learn**: Machine learning algorithms and preprocessing
-- **Matplotlib/Seaborn**: Data visualization
-- **Contextily**: Geographic visualization with basemaps
-
-## Installation & Setup
-
-### Prerequisites
-- Python 3.8 or higher
-- pip package manager
-
-### Installation
-1. **Clone or download this repository**
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   
-   **Note**: If you encounter issues with `contextily` on Windows, consider using conda instead:
-   ```bash
-   conda install contextily
-   ```
-
-### Data Setup
-1. Download the LAPD crime dataset (`Crime_Data_from_2020_to_Present.csv`)
-2. Place the CSV file in the project root directory
-3. Run the notebook cells sequentially
-
-### Alternative Installation Methods
-- **Using conda** (recommended for geographic libraries):
-  ```bash
-  conda create -n crime-prediction python=3.9
-  conda activate crime-prediction
-  conda install pandas numpy matplotlib seaborn scikit-learn contextily joblib
-  ```
-- **Using pip with virtual environment**:
-  ```bash
-  python -m venv crime-prediction-env
-  source crime-prediction-env/bin/activate  # On Windows: crime-prediction-env\Scripts\activate
-  pip install -r requirements.txt
-  ```
-
-## Usage
-
-### Running the Analysis
-1. **Data Exploration**: Execute cells 1-25 for comprehensive EDA
-2. **Data Cleaning**: Run cells 26-32 for preprocessing
-3. **Model Training**: Execute cells 33-36 for training and evaluation
-4. **Visualization**: Run cells 37-42 for results visualization
-
-### Key Functions
-- `file_sha256()`: Computes file integrity hash
-- `clip_rare()`: Handles rare categorical values
-- Model persistence with joblib for deployment
-
-## Data Preprocessing
-
-### Cleaning Steps
-1. **Missing Value Handling**: Strategic imputation for different data types
-2. **Outlier Detection**: Age validation (>0, <110) and coordinate filtering
-3. **Feature Engineering**: 
-   - Temporal features from date/time
-   - Geographic binning for spatial features
-   - Categorical encoding with frequency thresholds
-4. **Data Validation**: Type consistency and range checks
-
-### Feature Engineering
-- **Temporal Features**: Hour, day of week, weekend indicator
-- **Geographic Binning**: Latitude/longitude discretization
-- **Categorical Encoding**: One-hot encoding with minimum frequency filtering
-- **Missing Value Strategy**: Median for numeric, most frequent for categorical
-
-## Model Architecture
-
-### Pipeline Components
-1. **Preprocessing**: ColumnTransformer with separate pipelines for numeric and categorical data
-2. **Classifier**: Perceptron with balanced class weights
-3. **Calibration**: Sigmoid calibration for probability estimates
-
-### Hyperparameter Optimization
-- **Method**: RandomizedSearchCV with 50 iterations
-- **Parameters**: penalty, alpha, eta0, fit_intercept
-- **Cross-validation**: 5-fold stratified
-- **Scoring**: F1-macro score
-
-## Results & Insights
-
-### Top Crime Types
-1. Vehicle - Stolen (112,502 incidents)
-2. Battery - Simple Assault (74,747 incidents)
-3. Burglary from Vehicle (61,944 incidents)
-
-### Temporal Patterns
-- **Peak Hours**: 12 PM - 6 PM
-- **Peak Days**: Weekdays show higher activity
-- **Seasonal**: Consistent patterns across months
-
-### Geographic Distribution
-- **High Activity Areas**: Central, 77th Street, Pacific
-- **Crime Hotspots**: Street locations and residential areas
-
-
-## Model Evaluation
-
-### Confusion Matrix
-- **True Positives**: 102,579 (Part 1 correctly identified)
-- **False Positives**: 15,672 (Part 2 misclassified as Part 1)
-- **False Negatives**: 33,209 (Part 1 misclassified as Part 2)
-- **True Negatives**: 46,599 (Part 2 correctly identified)
-
-### Classification Report
-- **Part 1 Precision**: 75.54%
-- **Part 1 Recall**: 86.75%
-- **Part 2 Precision**: 74.83%
-- **Part 2 Recall**: 58.39%
-
-## Future Enhancements
-
-1. **Model Improvements**: 
-   - Try ensemble methods (Random Forest, XGBoost)
-   - Deep learning approaches
-   - Feature selection optimization
-
-2. **Data Enhancements**:
-   - Weather data integration
-   - Economic indicators
-   - Population density features
-
-3. **Deployment**:
-   - Web application for real-time predictions
-   - API development
-   - Model monitoring and retraining pipeline
-
-## Notes
-
-- The model uses sigmoid calibration to provide probability estimates
-- Geographic coordinates are filtered to Los Angeles area bounds
-- Rare categorical values are grouped to improve model stability
-- All random operations use seed=42 for reproducibility
-
-## Contributing
-
-Feel free to contribute to this project by:
-- Improving the model performance
-- Adding new features
-- Enhancing visualizations
-- Optimizing the preprocessing pipeline
-
-## License
-
-This project is for educational and research purposes. Please ensure compliance with data usage policies when working with LAPD crime data.
+> **Task:** Binary classification of LAPD crimes into **Part 1 vs Part 2** using LA Crime Data (2020–Present).  
+> **Project arc:** Start with a **linear Perceptron baseline**, then extend to a **non-linear Neural Network (MLP)** while keeping the same preprocessing pipeline for a fair comparison.
 
 ---
 
-**Author**: [Prangon Sarwar]  
-**Date**: 24-10-2025  
-**Dataset**: LAPD Crime Data from 2020 to Present
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Problem Definition](#problem-definition)
+- [Dataset](#dataset)
+- [Feature Engineering](#feature-engineering)
+- [Preprocessing Pipeline](#preprocessing-pipeline)
+- [Models](#models)
+  - [Perceptron Baseline](#perceptron-baseline)
+  - [Neural Network (MLP)](#neural-network-mlp)
+- [Results](#results)
+- [Notebook Walkthrough](#notebook-walkthrough)
+- [Visual Highlights](#visual-highlights)
+- [Reproducibility](#reproducibility)
+- [Recommended Improvements](#recommended-improvements)
+- [Repository Structure](#repository-structure)
+- [Credits](#credits)
+
+---
+
+## Project Overview
+
+This repository is an applied machine learning project built around a real-world, high-volume tabular dataset: LAPD crime incidents from 2020 to present.  
+The project is designed to be both:
+- **educational** (how a Perceptron works, and where it fails), and
+- **practical** (a full preprocessing + model + evaluation workflow on messy real data).
+
+The key design choice: **keep preprocessing fixed**, and swap models.  
+That lets us make a controlled claim:
+
+> If performance improves, it’s because the model learned better structure — not because we changed the data pipeline.
+
+---
+
+## Problem Definition
+
+We model crime severity as a **binary classification** task:
+
+- **Class “1”**: Part 1 crimes (more severe)
+- **Class “2”**: Part 2 crimes (less severe)
+
+The goal is to predict the class using temporal, spatial, demographic, and contextual features.
+
+Primary evaluation metric: **ROC-AUC**  
+(ROC-AUC is threshold-independent and more reliable than accuracy when classes are imbalanced.)
+
+---
+
+## Dataset
+
+- **Source**: LAPD Crime Data (2020–Present) CSV (`Crime_Data_from_2020_to_Present.csv`)
+- **Scale**: ~1M incidents (large, noisy, missing values, mixed types)
+- **Coverage**: Los Angeles area
+
+> **Note:** The raw CSV is not committed to this repo due to size.
+
+---
+
+## Feature Engineering
+
+This project constructs model-ready features from raw columns:
+
+### Temporal
+- Year, Month, Weekday
+- Hour, Minute
+- IsWeekend
+
+### Spatial
+- Latitude/Longitude binning (to reduce noise + create locality features)
+- Area Name
+
+### Demographic
+- Victim age
+- Victim sex
+
+### Contextual
+- Premise description
+- Weapon description
+
+These feature groups are intentionally heterogeneous — which is why the preprocessing is built as separate numeric vs categorical pipelines.
+
+---
+
+## Preprocessing Pipeline
+
+A single sklearn **ColumnTransformer** is used for both models to ensure fairness and prevent leakage.
+
+### Numeric pipeline
+- Missing values → median imputation
+- Scaling → StandardScaler
+
+### Categorical pipeline
+- Missing values → most frequent imputation
+- One-hot encoding (`handle_unknown="ignore"`)
+- Optional: minimum-frequency grouping to reduce sparse explosion
+
+---
+
+## Models
+
+### Perceptron Baseline
+A Perceptron is a linear classifier. It learns a single decision boundary:
+
+\[
+\hat{y} = \text{sign}(w^T x + b)
+\]
+
+Pros:
+- Fast, simple baseline
+- Good for understanding linear separability
+
+Limitations:
+- Cannot learn non-linear interactions (e.g., hour × area × premise)
+- Often underfits complex tabular patterns
+
+The repo originally implemented:
+- hyperparameter optimization
+- probability calibration
+- standard evaluation + diagnostics
+
+---
+
+### Neural Network (MLP)
+
+We extend the Perceptron into a **Multi-Layer Perceptron (MLP)** using TensorFlow/Keras, integrated into the sklearn pipeline using **SciKeras**.
+
+#### Why this is a “natural” extension
+A neural network is essentially stacked perceptrons with non-linear activations:
+
+- Hidden layers (Dense + ReLU) learn feature interactions
+- Dropout reduces overfitting
+- Sigmoid output gives probability for binary classification
+
+#### Integration design (important)
+We keep the same pipeline structure:
+
+**Preprocess (ColumnTransformer) → Model**
+
+This ensures the comparison is about **model capacity**, not data differences.
+
+---
+
+## Results
+
+### Perceptron (baseline)
+- **Accuracy:** 0.7532
+- **ROC-AUC:** 0.8349
+- **Macro F1:** 0.7318
+
+### Neural Network (MLP)
+- **Accuracy:** ~0.81
+- **ROC-AUC:** ~0.89
+- Class-wise performance improves, especially in overall separability (ROC-AUC)
+
+### Comparison Summary
+
+| Model | ROC-AUC | Accuracy | Macro F1 |
+|------|--------:|---------:|---------:|
+| Perceptron | 0.835 | 0.753 | 0.732 |
+| Neural Network (MLP) | **0.89** | **0.81** | **~0.80** |
+
+**Interpretation:**  
+The MLP improves ROC-AUC substantially, indicating better separation between Part 1 vs Part 2 crimes across thresholds. This supports the conclusion that the task is **not linearly separable**, and benefits from non-linear modeling.
+
+---
+
+## Notebook Walkthrough
+
+The primary workflow is contained in the notebook:
+
+- **EDA & cleaning**: missing values, validity checks, distributions
+- **Feature engineering**: time parsing, bins, derived columns
+- **Preprocessing pipeline**: ColumnTransformer for numeric + categorical
+- **Model 1**: Perceptron baseline (+ tuning/calibration)
+- **Model 2**: Neural Network MLP (SciKeras inside sklearn Pipeline)
+- **Evaluation**: ROC-AUC, classification report, confusion matrix, ROC curve
+- **Diagnostics**: permutation importance (optional), error patterns
+
+---
+
+## Visual Highlights
+
+Recommended visuals to keep the notebook and README “report-like”:
+
+- Crimes by hour and weekday (temporal rhythms)
+- Top crime categories; area distribution
+- Confusion matrix and ROC curve (evaluation)
+- Permutation importance bar chart (top features)
+- (Optional) Map of LA crimes (geopandas + contextily)
+
+> Tip: Save figures to `reports/figures/` and embed them in the README.
+
+---
+
+## Reproducibility
+
+### 1) Create environment
+```bash
+python -m venv .venv
+# Windows: .\.venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
